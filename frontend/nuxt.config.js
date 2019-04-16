@@ -47,8 +47,35 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
+  
+  // Axios setup
+  axios: {
+    prefix: '',
+    host: 'localhost',
+    port: 8000
+  },
+
+  // Auth Options
+  auth: {
+    redirect: {
+      login: '/',
+      logout: '/',
+      callback: '/',
+      home: '/'
+    },
+    endpoints: {
+      login: { url: '/auth/login', method: 'post'}
+    }
+  },
+
+  // Auth Middle Option
+  router: {
+    middleware: ['auth']
+  },
   /*
   ** Build configuration
   */

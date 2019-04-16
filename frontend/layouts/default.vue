@@ -54,8 +54,13 @@
       fixed
     >
     <!-- IF NOT LOGGED IN-->
-      <Login/>
+    <div v-if="this.$auth.loggedIn">
+      <UserInfo/>
+    </div>
     <!-- ELSE -->
+    <div v-else>
+      <Login/>
+    </div>
     </v-navigation-drawer>
     <v-footer
       :fixed="fixed"
