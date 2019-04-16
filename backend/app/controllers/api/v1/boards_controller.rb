@@ -3,8 +3,8 @@ module Api
     class BoardsController < ApplicationController
 
       def index 
-        boards = Boards.all
-        render json: @boards
+        boards = Board.all
+        render json: boards
       end
 
       def create 

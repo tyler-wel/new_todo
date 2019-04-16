@@ -6,4 +6,8 @@ Rails.application.routes.draw do
     end
   end
   root to: 'api/v1/boards#index'
+  post '/graphql', to: 'graphql#query'
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+  end
 end
