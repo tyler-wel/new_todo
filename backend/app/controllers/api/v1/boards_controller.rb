@@ -8,6 +8,12 @@ module Api
         render json: boards
       end
 
+      # GET /boards/id
+      def show
+        @board = Board.find(params[:id])
+        render json: @board
+      end
+
       # POST /boards
       def create 
         @board = @user.boards.new(board_params)
