@@ -54,27 +54,26 @@ export default {
   
   // Axios setup
   axios: {
-    prefix: '',
     host: 'localhost',
     port: 8000
   },
-
   // Auth Options
   auth: {
     redirect: {
-      login: '/',
+      login: '/login',
       logout: '/',
       callback: '/',
       home: '/'
     },
-    endpoints: {
-      login: { url: '/auth/login', method: 'post'}
+    strategies: {
+      local: {
+        endpoints: {
+          login:  { url: '/auth/login', method: 'post', propertyName: 'authorization'},
+          user:   { url: '/auth/user', method: 'get', propertyName: 'user'},
+          logout: { url: '/auth/logout', method: 'post', propertyName: 'message'}
+        }
+      }
     }
-  },
-
-  // Auth Middle Option
-  router: {
-    middleware: ['auth']
   },
   /*
   ** Build configuration

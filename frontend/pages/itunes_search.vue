@@ -13,7 +13,9 @@
 
 <script>
 export default {
-
+  mounted: function() {
+    this.$store.commit('update', "iTunes Album Search")
+  },
   data() {
     return {
       search: ''

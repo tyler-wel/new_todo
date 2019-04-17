@@ -1,5 +1,5 @@
 class AuthenticationController < ApplicationController
-  before_action :authorize_request, except: :login
+  before_action :authorize_request, except: [:login, :logout] 
 
   # POST /auth/login
   def login
@@ -14,6 +14,22 @@ class AuthenticationController < ApplicationController
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
+  end
+
+  # GET /auth/user
+  def show 
+
+    puts "CURRENT USER " + @current_user.name
+
+    render json: { user: @current_user }, status: :ok
+
+  end
+
+  # POST /auth/logout
+  def logout 
+    puts "LOGGING OUT TODO"
+
+    render json: { message: "logged out"}, status: :ok
   end
 
   private

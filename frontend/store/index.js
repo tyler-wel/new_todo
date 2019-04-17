@@ -1,12 +1,9 @@
 export const state = () => ({
-  authToken: null
+  title: 'Vuetify.js'
 })
 
 export const mutations = {
-  commit (state, token) {
-    state.authToken = token
+  update (state, newTitle) {
+    state.title = newTitle
   },
-  remove (state) {
-    state.authToken = null
-  }
 }

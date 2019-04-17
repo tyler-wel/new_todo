@@ -36,17 +36,21 @@
       >
         <v-icon>{{ `chevron_${miniVariant ? 'right' : 'left'}` }}</v-icon>
       </v-btn>
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title v-text="this.$store.state.title" />
       <v-spacer />
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer" >
-        <v-icon>face</v-icon>
-      </v-btn>
+      <!-- RIGHT DRAWER BUTTON -->
+      <div v-if="this.$auth.loggedIn">
+        <v-btn icon @click.stop="rightDrawer = !rightDrawer" >
+          <v-icon>face</v-icon>
+        </v-btn>
+      </div>
     </v-toolbar>
     <v-content>
       <v-container>
         <nuxt />
       </v-container>
     </v-content>
+    <!-- RIGHT DRAWER -->
     <v-navigation-drawer
       :right="right"
       v-model="rightDrawer"
@@ -55,13 +59,15 @@
     >
     <!-- IF NOT LOGGED IN-->
     <div v-if="this.$auth.loggedIn">
-      <UserInfo/>
+      <User/>
     </div>
     <!-- ELSE -->
     <div v-else>
       <Login/>
     </div>
     </v-navigation-drawer>
+    
+
     <v-footer
       :fixed="fixed"
       app
@@ -73,6 +79,7 @@
 
 <script>
 import Login from '~/components/Login.vue'
+import User from '~/components/User.vue'
 export default {
   data() {
     return {
@@ -86,14 +93,19 @@ export default {
           to: '/'
         },
         {
-          icon: 'bubble_chart',
-          title: 'Inspire',
-          to: '/inspire'
+          icon: 'exit_to_app',
+          title: 'Login',
+          to: '/login'
         },
         {
           icon: 'search',
           title: 'iTunes Search',
           to: '/itunes_search'
+        },
+        {
+          icon: 'list', 
+          title: 'Boards',
+          to: '/boards'
         }
       ],
       miniVariant: false,
@@ -103,7 +115,8 @@ export default {
     }
   }, 
   components: {
-    Login
+    Login,
+    User
   },
 }
 </script>

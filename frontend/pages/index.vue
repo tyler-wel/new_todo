@@ -75,6 +75,9 @@ import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
 
 export default {
+  mounted: function() {
+    this.$store.commit('update', "New Todo")
+  },
   components: {
     Logo,
     VuetifyLogo

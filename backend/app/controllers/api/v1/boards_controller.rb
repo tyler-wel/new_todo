@@ -2,11 +2,13 @@ module Api
   module V1
     class BoardsController < ApplicationController
 
+      # GET /boards
       def index 
         boards = Board.all
         render json: boards
       end
 
+      # POST /boards
       def create 
         @board = @user.boards.new(board_params)
       end
