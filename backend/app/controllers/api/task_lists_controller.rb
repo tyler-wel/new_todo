@@ -1,9 +1,9 @@
 module Api 
   class TaskListsController < ApplicationController
     #before_action :authorize_request, except: [:create]
-    before_action :find_user
-    before_action :find_board
-    before_action :find_task_list, except: [:index, :delete]
+    before_action :find_user, except: [:all]
+    before_action :find_board, except: [:all]
+    before_action :find_task_list, except: [:index, :delete, :all]
 
     # GET /users/{id}/boards/{id}/task_lists
     def index 

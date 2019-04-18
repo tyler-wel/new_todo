@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_18_065032) do
+ActiveRecord::Schema.define(version: 2019_04_18_072656) do
 
   create_table "board_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -37,6 +37,15 @@ ActiveRecord::Schema.define(version: 2019_04_18_065032) do
     t.index ["board_id"], name: "index_task_lists_on_board_id"
   end
 
+  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.text "desc"
+    t.bigint "task_list_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_list_id"], name: "index_tasks_on_task_list_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "username"
     t.string "email"
@@ -49,4 +58,5 @@ ActiveRecord::Schema.define(version: 2019_04_18_065032) do
   add_foreign_key "board_users", "boards"
   add_foreign_key "board_users", "users"
   add_foreign_key "task_lists", "boards"
+  add_foreign_key "tasks", "task_lists"
 end

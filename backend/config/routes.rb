@@ -3,11 +3,14 @@ Rails.application.routes.draw do
     resources :users do
 
       resources :boards do
-        resources :task_lists
+        resources :task_lists do
+          resources :tasks
+        end
       end
       
     end
     get '/boards', to: 'boards#all'
+    get '/tasks', to: 'tasks#all'
     get '/task_lists', to: 'task_lists#all'
   end
 

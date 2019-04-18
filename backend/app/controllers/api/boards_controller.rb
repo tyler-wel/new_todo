@@ -1,8 +1,8 @@
 module Api 
   class BoardsController < ApplicationController
     #before_action :authorize_request, except: [:create]
-    before_action :find_user
-    before_action :find_board, except: [:index, :create]
+    before_action :find_user, except: [:all]
+    before_action :find_board, except: [:index, :create, :all]
 
     # GET /users/{id}/boards
     def index 
