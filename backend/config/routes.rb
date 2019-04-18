@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
-  post "/graphql", to: "graphql#execute"
   namespace :api do
-    resources :users
+    resources :users do
+      get '/boards', to: 'users#owned_boards'
+    end
     resources :boards
   end
-  root to: 'api/boards#index'
+
+  root to: 'api/users#index'
+  
   post '/graphql', to: 'graphql#query'
+  post "/graphql", to: "graphql#execute"
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
