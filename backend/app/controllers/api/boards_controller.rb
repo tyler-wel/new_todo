@@ -1,31 +1,50 @@
 module Api 
   class BoardsController < ApplicationController
+    #before_action :authorize_request, except: [:create]
+    before_action :find_user
+    before_action :find_board, except: [:index, :create]
 
-    # GET /boards
+    # GET /users/{id}/boards
     def index 
-      boards = Board.all
+      boards = @user.owned_boards
       render json: boards
     end
 
-    # GET /boards/id
-    def show
-      @board = Board.find(params[:id])
-      render json: @board
-    end
-
-    # POST /boards
+    # POST /users/{id}/boards
     def create 
       @board = @user.boards.new(board_params)
     end
 
-    private
-    
-    def set_board
-      @board = @user.boards.find(params[:id])
+    # GET /users/{id}/boards/{id}
+    def show
+      render json: @board
     end
 
-    def set_user 
-      @user = User.find(params[:id])
+    # DELETE /users/{id}/boards/{id}
+    def delete
+
+    end
+
+    # GET /boards/all
+    def all
+      boards = Board.all
+      render json: boards
+    end
+
+    private
+
+    def board_params
+      params.permit(
+        :name
+      )
+    end
+
+    def find_board
+      @board = Board.find(params[:id])
+    end
+
+    def find_user 
+      @user = User.find(params[:user_id])
     end
 
   end

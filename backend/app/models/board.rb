@@ -5,6 +5,8 @@ class Board < ApplicationRecord
   has_many :board_users
   has_many :users, through: :board_users
 
+  has_many :task_lists
+
   def owner
     board_users.owner.map(&:user)
   end

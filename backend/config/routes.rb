@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   namespace :api do
     resources :users do
-      get '/boards', to: 'users#owned_boards'
+
+      resources :boards do
+        resources :task_lists
+      end
+      
     end
-    resources :boards
+    get '/boards', to: 'boards#all'
+    get '/task_lists', to: 'task_lists#all'
   end
 
   root to: 'api/users#index'
