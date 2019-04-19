@@ -19,7 +19,7 @@ class AuthenticationController < ApplicationController
   # GET /auth/user
   def show 
 
-    puts "CURRENT USER " + @current_user.name
+    puts "CURRENT USER " + @current_user.username
 
     render json: { user: @current_user }, status: :ok
 
