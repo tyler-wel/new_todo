@@ -1,11 +1,11 @@
 <template>
   <v-card height="100%">
     <v-toolbar dark color="primary">
-      <v-toolbar-title>Hello {{this.$auth.user.name}}! </v-toolbar-title>
+      <v-toolbar-title>Hello TODO USER HERE! </v-toolbar-title>
     </v-toolbar>
     <v-alert type="error" :value="error">{{error}}</v-alert>
     <v-card-text>
-      Logged in as {{this.$auth.user.email}}
+      Logged in as TODO PUT USER HERE
     </v-card-text>
     <v-card-actions>
       <v-btn 
@@ -29,9 +29,7 @@ export default {
   },
   methods: {
     async logout(){
-      console.log("trying to logout")
-      await this.$auth.logout()
-      console.log("are we logged in? " + this.$auth.loggedIn)
+
     }
   }
 }

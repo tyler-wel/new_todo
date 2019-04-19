@@ -39,11 +39,9 @@
       <v-toolbar-title v-text="this.$store.state.header_title.title" />
       <v-spacer />
       <!-- RIGHT DRAWER BUTTON -->
-      <div v-if="this.$auth.loggedIn">
-        <v-btn icon @click.stop="rightDrawer = !rightDrawer" >
-          <v-icon>face</v-icon>
-        </v-btn>
-      </div>
+      <v-btn icon @click.stop="rightDrawer = !rightDrawer" >
+        <v-icon>face</v-icon>
+      </v-btn>
     </v-toolbar>
     <v-content>
       <v-container>
@@ -57,14 +55,7 @@
       temporary
       fixed
     >
-    <!-- IF NOT LOGGED IN-->
-    <div v-if="this.$auth.loggedIn">
       <User/>
-    </div>
-    <!-- ELSE -->
-    <div v-else>
-      <Login/>
-    </div>
     </v-navigation-drawer>
     
 

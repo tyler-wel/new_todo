@@ -50,7 +50,6 @@ export default {
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
-    '@nuxtjs/auth',
     '@nuxtjs/apollo'
   ],
 
@@ -104,24 +103,6 @@ export default {
   axios: {
     host: 'localhost',
     port: 8000
-  },
-  // Auth Options
-  auth: {
-    redirect: {
-      login: '/login',
-      logout: '/',
-      callback: '/',
-      home: '/'
-    },
-    strategies: {
-      local: {
-        endpoints: {
-          login:  { url: '/auth/login', method: 'post', propertyName: 'authorization'},
-          user:   { url: '/auth/user', method: 'get', propertyName: 'user'},
-          logout: { url: '/auth/logout', method: 'post', propertyName: 'message'}
-        }
-      }
-    }
   },
   /*
   ** Build configuration

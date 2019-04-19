@@ -84,7 +84,7 @@ import {UPDATE_TITLE} from '~/store/mutation_names.js'
 export default {
   data() {
     return {
-      user: this.$auth.user
+      user: 'no user'
     }
   },
   mounted: function() {

@@ -65,21 +65,18 @@ export default {
   methods: {
    async validate () {
       if (this.$refs.form.validate()) {
-        await this.$auth.loginWith('local', {
-          data: {
-            email: this.email,
-            password: this.password
-          }
-        })
-        .catch(e => {
-          console.log(e)
-          this.error = "Wrong email and/or password"
-        })
-  
-        if(this.$auth.loggedIn){
-          console.log("Logged in ok!")
-          const token = this.$auth.getToken('local').split(" ").pop()
-          this.$store.commit(UPDATE_TOKEN, token)
+        const credentials = { email: this.email, password: this.password }
+        try {
+        const res = await this.$apollo.mutate({
+            mutation: signinUser,
+            variables: credentials
+        }).then(({data}) => data && data.authenticateUser)
+
+        console.log(res)
+
+        await this.$apolloHelpers.onLogin(res.token)
+        } catch (e) {
+            console.error(e)
         }
       }
    }

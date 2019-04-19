@@ -61,23 +61,8 @@ export default {
   },
   methods: {
    async validate () {
-      if (this.$refs.form.validate()) {
-        console.log("loggin in?")
-        await this.$auth.loginWith('local', {
-          data: {
-            email: this.email,
-            password: this.password
-          }
-        })
-        .catch(e => {
-          console.log(e)
-          this.error = "Wrong email and/or password"
-        })
-
-        if(this.$auth.loggedIn){
-          console.log("Logged in ok!")
-        }
-      }
+      
+      
    }
   }
 }

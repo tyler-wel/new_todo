@@ -45,8 +45,8 @@ import BoardCards from '~/components/BoardCards.vue'
 import {UPDATE_TITLE} from '~/store/mutation_names.js'
 
 export default {
-  middleware:['auth'],
-  mounted: function() {
+
+mounted: function() {
     this.$store.commit(UPDATE_TITLE, 'ToDo Boards')
   },
 
