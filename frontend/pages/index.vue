@@ -79,6 +79,7 @@
 <script>
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import {UPDATE_TITLE} from '~/store/mutation_names.js'
 
 export default {
   data() {
@@ -87,7 +88,7 @@ export default {
     }
   },
   mounted: function() {
-    this.$store.commit('update', "New Todo")
+    this.$store.commit(UPDATE_TITLE, "New Todo")
   },
   components: {
     Logo,

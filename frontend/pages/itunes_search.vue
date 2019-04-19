@@ -12,9 +12,11 @@
 </template>
 
 <script>
+import {UPDATE_TITLE} from '~/store/mutation_names.js'
+
 export default {
   mounted: function() {
-    this.$store.commit('update', "iTunes Album Search")
+    this.$store.commit(UPDATE_TITLE, "iTunes Album Search")
   },
   data() {
     return {
