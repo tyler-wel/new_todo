@@ -42,11 +42,12 @@
 
 <script>
 import BoardCards from '~/components/BoardCards.vue'
+import {UPDATE_TITLE} from '~/store/mutation_names.js'
 
 export default {
   middleware:['auth'],
   mounted: function() {
-    this.$store.commit('update', 'ToDo Boards')
+    this.$store.commit(UPDATE_TITLE, 'ToDo Boards')
   },
 
   components: {

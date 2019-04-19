@@ -1,18 +1,17 @@
 class User < ApplicationRecord
   has_secure_password
-  
+
   validates :email, presence: true, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :name, presence: true
-  validates :password_digest,
+  validates :username, presence: true
+  validates :password,
             length: { minimum: 6 },
-            if: -> { new_record? || !password_digest.nil? }
-  
-  
-  has_and_belongs_to_many :boards, -> { distinct }
+            if: -> { new_record? || !password.nil? }
 
-  def owned_boards 
-    Board.where("user_id = ?", id)
-  end
+  has_many :board_users
+  has_many :boards, through: :board_users
 
+  def owned_boards
+    board_users.owner.map(&:board)
+  end  
 end

@@ -1,9 +1,9 @@
 export const state = () => ({
-  title: 'Vuetify.js'
+  counter: 0
 })
 
 export const mutations = {
-  update (state, newTitle) {
-    state.title = newTitle
-  },
+  increment (state) {
+    state.counter++
+  }
 }

@@ -43,6 +43,12 @@
           <div class="text-xs-right">
             <em><small>&mdash; John Leider</small></em>
           </div>
+          <v-subheader>
+            USER INFO
+          </v-subheader>
+          <p>
+            {{user}}
+          </p>
           <hr class="my-3">
           <a
             href="https://nuxtjs.org/"
@@ -73,10 +79,16 @@
 <script>
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import {UPDATE_TITLE} from '~/store/mutation_names.js'
 
 export default {
+  data() {
+    return {
+      user: this.$auth.user
+    }
+  },
   mounted: function() {
-    this.$store.commit('update', "New Todo")
+    this.$store.commit(UPDATE_TITLE, "New Todo")
   },
   components: {
     Logo,

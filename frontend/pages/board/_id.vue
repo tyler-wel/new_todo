@@ -95,9 +95,11 @@
 </template>
 
 <script>
+import {UPDATE_TITLE} from '~/store/mutation_names.js'
+
 export default {
   mounted: function() {
-    this.$store.commit('update', "Todo Board NAME HERE")
+    this.$store.commit(UPDATE_TITLE, "Todo Board NAME HERE")
   },
   data() {
     return {

@@ -41,10 +41,10 @@
 
 <script>
 import { mapMutations } from 'vuex'
-
+import {UPDATE_TITLE, UPDATE_TOKEN} from '~/store/mutation_names.js'
 export default {
   mounted: function (){
-    this.$store.commit('update', 'Login')
+    this.$store.commit(UPDATE_TITLE, 'Login')
   },
   data() { 
     return {
@@ -65,7 +65,6 @@ export default {
   methods: {
    async validate () {
       if (this.$refs.form.validate()) {
-        console.log("loggin in?")
         await this.$auth.loginWith('local', {
           data: {
             email: this.email,
@@ -76,13 +75,14 @@ export default {
           console.log(e)
           this.error = "Wrong email and/or password"
         })
-
+  
         if(this.$auth.loggedIn){
           console.log("Logged in ok!")
+          const token = this.$auth.getToken('local').split(" ").pop()
+          this.$store.commit(UPDATE_TOKEN, token)
         }
       }
    }
   }
 }
 </script>
-
