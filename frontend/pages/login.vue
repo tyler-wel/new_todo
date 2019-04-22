@@ -41,6 +41,7 @@
 
 <script>
 import { mapMutations } from 'vuex'
+import signinUser from '~/gql/authUser.gql'
 import {UPDATE_TITLE, UPDATE_TOKEN} from '~/store/mutation_names.js'
 export default {
   mounted: function (){
@@ -70,13 +71,14 @@ export default {
         const res = await this.$apollo.mutate({
             mutation: signinUser,
             variables: credentials
-        }).then(({data}) => data && data.authenticateUser)
-
-        console.log(res)
-
-        await this.$apolloHelpers.onLogin(res.token)
+        }).then(({data}) => data && data.signinUser)
+        await this.$apolloHelpers.onLogin(res.token).then(() => {
+          console.log(this.$apolloHelpers.getToken())
+          
+        })
         } catch (e) {
             console.error(e)
+            this.error = "Wrong email or password"
         }
       }
    }

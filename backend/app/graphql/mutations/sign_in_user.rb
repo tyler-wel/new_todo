@@ -12,8 +12,8 @@ module Mutations
     def resolve(auth: nil)
       # basic validation
       return unless auth
-      user = User.find_by_email(auth[:email])
-
+      user = User.find_by_email!(auth[:email])
+      puts user
       # ensures we have the correct user
       if user&.authenticate(auth[:password])
         token = JsonWebToken.encode(user_id: user.id)

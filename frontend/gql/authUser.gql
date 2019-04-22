@@ -1,6 +1,8 @@
-mutation authenticateUser($email:String!,$password:String!){
-    authenticateUser(email: $email, password: $password) {
+mutation signinUser($email:String!,$password:String!){
+    signinUser(auth: { email: $email, password: $password}) {
         token
-        id
+        user {
+            id
+        }
     }
 }

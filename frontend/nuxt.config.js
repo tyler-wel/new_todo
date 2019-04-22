@@ -60,7 +60,6 @@ export default {
   // Give apollo module options
   apollo: {
     tokenExpires: 7, // optional, default: 7 (days)
-    includeNodeModules: true, // optional, default: false (this includes graphql-tag for node_modules folder)
     // optional
     errorHandler (error) {
       console.log('%cError', 'background: red; color: white; padding: 2px 4px; border-radius: 3px; font-weight: bold;', error.message)
@@ -69,10 +68,10 @@ export default {
     clientConfigs: {
       default: {
         // required  
-        httpEndpoint: 'http://localhost:3000',
+        httpEndpoint: 'http://localhost:8000/graphql',
       },
       test: {
-        httpEndpoint: 'http://localhost:3000',
+        httpEndpoint: 'http://localhost:8000/graphql',
       },
     }
   },

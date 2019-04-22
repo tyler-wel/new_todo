@@ -14,12 +14,7 @@ module Queries
 
 
     def resolve()
-      puts "LOGGED IN USER " + current_user.username
-      if current_user
-        User.all
-      else
-        puts "user is not logged in"
-      end
+      User.all
     end
   end
 end
