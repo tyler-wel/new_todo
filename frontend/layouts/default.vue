@@ -49,12 +49,6 @@
       app
     >
       <v-toolbar-side-icon @click="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>{{ `chevron_${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
       <v-toolbar-title v-text="this.$store.state.header_title.title" />
       <v-spacer />
       <!-- RIGHT DRAWER BUTTON -->

@@ -1,0 +1,15 @@
+query getLists($id:ID!){
+  getTaskList(id: $id){
+    id
+    name
+    board{
+      name
+    }
+    tasks{
+      id
+      name
+      desc
+      taskListId
+    }
+  }
+}

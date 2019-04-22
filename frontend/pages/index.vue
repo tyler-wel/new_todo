@@ -57,7 +57,9 @@
             ALL USERS GRAPHQL QUERY
           </v-subheader>
           <div v-if="this.$auth.loggedIn">
-            <p>{{users}}</p>
+            <div v-for="(user, i) in users" :key="i">
+              <p>{{user}}</p>
+            </div>
           </div>
           <div v-else>
             <p> NOT LOGGED IN </p>
@@ -92,7 +94,7 @@
 <script>
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
-import allUsers from '~/gql/all_users.gql'
+import allUsers from '~/gql/get_all_users.gql'
 import {UPDATE_TITLE} from '~/store/mutation_names.js'
 
 export default {

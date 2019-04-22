@@ -1,0 +1,18 @@
+query getBoards{
+  userBoards{
+    id
+    name
+    description
+    owner {
+      id
+      username
+    }
+    users {
+      id
+      username
+    }
+    taskLists {
+      name
+    }
+  }
+}

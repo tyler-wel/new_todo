@@ -1,0 +1,5 @@
+mutation updateTask($taskId:ID!, $parentId:ID!){
+  updateTask(taskId: $taskId, parentId: $parentId) {
+    id
+  }
+}

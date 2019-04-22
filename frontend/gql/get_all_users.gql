@@ -1,7 +1,10 @@
-{
+query allUsers{
   allUsers{
     id
     username
     email
+    boards {
+      name
+    }
   }
 }
