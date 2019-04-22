@@ -32,6 +32,7 @@ export default {
       console.log("trying to logout")
       await this.$auth.logout()
       console.log("are we logged in? " + this.$auth.loggedIn)
+      await this.$apolloHelpers.onLogout()
     }
   }
 }

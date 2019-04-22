@@ -80,9 +80,12 @@ export default {
           console.log("Logged in ok!")
           const token = this.$auth.getToken('local').split(" ").pop()
           this.$store.commit(UPDATE_TOKEN, token)
+          await this.$apolloHelpers.onLogin(token).then(() => {
+            console.log(this.$apolloHelpers.getToken())
+          })
         }
       }
-   }
-  }
+    }
+  },
 }
 </script>

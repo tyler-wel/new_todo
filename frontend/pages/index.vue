@@ -43,12 +43,25 @@
           <div class="text-xs-right">
             <em><small>&mdash; John Leider</small></em>
           </div>
+          <!-- USER TESTING -->
           <v-subheader>
-            USER INFO
+              CURRENT USER
           </v-subheader>
-          <p>
-            {{user}}
-          </p>
+          <div v-if="this.$auth.loggedIn">
+            <p>{{user}}</p>
+          </div>
+          <div v-else>
+            <p>NOT LOGGED IN</p>
+          </div>
+          <v-subheader>
+            ALL USERS GRAPHQL QUERY
+          </v-subheader>
+          <div v-if="this.$auth.loggedIn">
+            <p>{{users}}</p>
+          </div>
+          <div v-else>
+            <p> NOT LOGGED IN </p>
+          </div>
           <hr class="my-3">
           <a
             href="https://nuxtjs.org/"
@@ -79,12 +92,14 @@
 <script>
 import Logo from '~/components/Logo.vue'
 import VuetifyLogo from '~/components/VuetifyLogo.vue'
+import allUsers from '~/gql/all_users.gql'
 import {UPDATE_TITLE} from '~/store/mutation_names.js'
 
 export default {
   data() {
     return {
-      user: this.$auth.user
+      user: this.$auth.user,
+      users: {}
     }
   },
   mounted: function() {
@@ -93,6 +108,12 @@ export default {
   components: {
     Logo,
     VuetifyLogo
+  },
+  apollo: {
+    users: {
+      query: allUsers,
+      update: ({allUsers}) => { return allUsers }
+    }
   }
 }
 </script>

@@ -8,6 +8,7 @@
       app
     >
       <v-list>
+
         <v-list-tile
           v-for="(item, i) in items"
           :key="i"
@@ -22,7 +23,25 @@
             <v-list-tile-title v-text="item.title" />
           </v-list-tile-content>
         </v-list-tile>
+        <div v-if="!this.$auth.loggedIn">
+          <v-list-tile
+            key='login'
+            to='/login'
+            router
+            exact
+            >
+            <v-list-tile-action>
+              <v-icon>exit_to_app</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>
+                Login
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </div>
       </v-list>
+
     </v-navigation-drawer>
     <v-toolbar
       :clipped-left="clipped"
@@ -63,7 +82,6 @@
     </div>
     <!-- ELSE -->
     <div v-else>
-      <Login/>
     </div>
     </v-navigation-drawer>
     
@@ -91,11 +109,6 @@ export default {
           icon: 'apps',
           title: 'Welcome',
           to: '/'
-        },
-        {
-          icon: 'exit_to_app',
-          title: 'Login',
-          to: '/login'
         },
         {
           icon: 'search',
