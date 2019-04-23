@@ -45,7 +45,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Save</v-btn>
+          <v-btn color="blue darken-1" flat @click="saveNewBoard()">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -71,6 +71,10 @@ export default {
   methods: {
     onclick() {
       console.log('clicked')
+    },
+    saveNewBoard() {
+      this.dialog = false
+      console.log('clicked save')
     }
   },
   computed: {
