@@ -6,7 +6,7 @@ module Api
     # GET /users
     def index
       @users = User.all
-      render json: @users, status: :ok
+      render json: @users, :include => [:boards], status: :ok
     end
 
     # POST /users

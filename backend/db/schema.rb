@@ -12,9 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_04_18_072656) do
 
-  create_table "board_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "board_id"
+  create_table "board_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "board_id"
     t.boolean "is_owner", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -22,31 +22,31 @@ ActiveRecord::Schema.define(version: 2019_04_18_072656) do
     t.index ["user_id"], name: "index_board_users_on_user_id"
   end
 
-  create_table "boards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "boards", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "task_lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "task_lists", force: :cascade do |t|
     t.string "name"
-    t.bigint "board_id"
+    t.integer "board_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["board_id"], name: "index_task_lists_on_board_id"
   end
 
-  create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.text "desc"
-    t.bigint "task_list_id"
+    t.integer "task_list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_list_id"], name: "index_tasks_on_task_list_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
     t.string "password_digest"
@@ -55,8 +55,4 @@ ActiveRecord::Schema.define(version: 2019_04_18_072656) do
     t.boolean "admin", default: false
   end
 
-  add_foreign_key "board_users", "boards"
-  add_foreign_key "board_users", "users"
-  add_foreign_key "task_lists", "boards"
-  add_foreign_key "tasks", "task_lists"
 end

@@ -2,7 +2,7 @@ FROM ruby:2.6
 
 RUN apt-get update -qq && \
     apt-get install -y nodejs \
-                       mysql-client \
+                       default-mysql-client \
                        --no-install-recommends && \
     rm -rf /var/lib/apt/lists/* && \
     gem update

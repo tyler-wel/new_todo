@@ -28,7 +28,7 @@ module Api
     # GET /boards/all
     def all
       boards = Board.all
-      render json: boards
+      render json: boards, :include => [:task_lists], status: :ok
     end
 
     private

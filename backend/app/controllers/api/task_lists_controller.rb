@@ -28,8 +28,8 @@ module Api
 
     # GET /task_lists/all
     def all
-      lists = TaskList.all
-      render json: lists
+      @lists = TaskList.all
+      render json: @lists, :include => [:tasks], status: :ok
     end
 
 
